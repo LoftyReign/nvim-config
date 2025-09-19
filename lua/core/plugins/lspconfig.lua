@@ -14,13 +14,29 @@ return {
 				if client:supports_method("textDocument/completion") then
 					vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
 				end
+
+				local map = function(keys, func, desc, mode)
+					mode = mode or "n"
+					vim.keymap.set(mode, keys, func, { buffer = ev.buf, desc = "LSP: " .. desc })
+				end
+
+				map("gn", vim.lsp.buf.rename, "Rename")
+				map("ga", vim.lsp.buf.code_action, "Goto Code Action", { "n", "x" })
+				map("gr", require("telescope.builtin").lsp_references, "Goto References")
 			end,
 		})
 
-		require("mason-tool-installer").setup({
-			ensure_installed = {
-				"stylua",
-			},
+		local servers = { "lua_ls" }
+		local ensure_installed = vim.list_extend(servers, {
+			"stylua",
 		})
+
+		require("mason-tool-installer").setup({
+			ensure_installed = ensure_installed,
+		})
+
+		for _, server in ipairs(servers) do
+			vim.lsp.enable(server)
+		end
 	end,
 }
