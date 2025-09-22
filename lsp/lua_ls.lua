@@ -7,6 +7,12 @@ return {
 			telemetry = {
 				enable = false,
 			},
+			diagnostics = {
+				globals = { "vim" },
+			},
+			worspace = {
+				checkThirdParty = false,
+			},
 		},
 	},
 }
