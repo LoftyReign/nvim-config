@@ -13,8 +13,17 @@ return {
 		local theme_file = vim.fn.stdpath("data") .. "/last_colortheme.txt"
 		local default_theme = "rose-pine"
 
+		local function make_transparent()
+			vim.o.termguicolors = true
+
+			vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+			vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+		end
+
 		local function set_colorscheme(theme)
 			local ok, err = pcall(vim.cmd.colorscheme, theme)
+			make_transparent()
+
 			if not ok then
 				print("Failed to load colorscheme '" .. theme .. "': " .. err)
 			end
@@ -49,6 +58,7 @@ return {
 		vim.api.nvim_create_autocmd("ColorScheme", {
 			callback = function()
 				save_colorscheme(vim.g.colors_name)
+				make_transparent()
 			end,
 		})
 

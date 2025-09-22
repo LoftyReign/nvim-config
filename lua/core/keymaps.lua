@@ -35,12 +35,6 @@ vim.o.signcolumn = "yes"
 
 vim.opt.completeopt = { "menu", "menuone", "noselect", "noinsert", "fuzzy" }
 
--- transparent background
-vim.o.termguicolors = true
-
-vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-
 -- Do not copy deletions into clipboard
 vim.keymap.set({ "n", "v" }, "d", '"_d', { noremap = true })
 vim.keymap.set({ "n", "v" }, "x", '"_x', { noremap = true })
