@@ -1,7 +1,7 @@
 return {
 	cmd = { "lua-language-server" },
 	filetypes = { "lua" },
-	root_markers = { ".luarc.json", ".git", vim.uv.cwd() },
+	root_markers = { { ".luarc.json", ".luarc.jsonc" }, ".git" },
 	settings = {
 		Lua = {
 			telemetry = {
@@ -10,8 +10,8 @@ return {
 			diagnostics = {
 				globals = { "vim" },
 			},
-			worspace = {
-				checkThirdParty = false,
+			runtime = {
+				version = "LuaJIT",
 			},
 		},
 	},
