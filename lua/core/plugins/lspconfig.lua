@@ -40,7 +40,8 @@ return {
 		})
 
 		local servers = { "lua_ls" }
-		local ensure_installed = vim.list_extend(servers, {
+		local ensure_installed = servers
+		vim.list_extend(ensure_installed, {
 			"stylua",
 		})
 
