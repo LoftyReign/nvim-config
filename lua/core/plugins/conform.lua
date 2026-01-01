@@ -9,6 +9,7 @@ return {
 		conform.setup({
 			formatters_by_ft = {
 				lua = { "stylua" },
+				go = { "goimports", "gofumpt" },
 			},
 			format_on_save = {
 				lsp_fallback = true,
