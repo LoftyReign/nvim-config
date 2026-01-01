@@ -40,7 +40,7 @@ return {
 			end,
 		})
 
-		local servers = { "lua_ls", "gopls" }
+		local servers = { "lua_ls", "gopls", "bash-language-server" }
 		local ensure_installed = servers
 		vim.list_extend(ensure_installed, {
 			"stylua",
