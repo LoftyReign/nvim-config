@@ -10,6 +10,7 @@ return {
 		},
 	},
 	lazy = false,
+	branch = "main",
 	build = ":TSUpdate",
 	config = function()
 		local ts = require("nvim-treesitter")
@@ -44,6 +45,10 @@ return {
 			"checkhealth",
 			"mason",
 			"lazy",
+			"TelescopePrompt",
+			"TelescopeResults",
+			"fidget",
+			"cmp_menu",
 		}
 
 		vim.api.nvim_create_autocmd("FileType", {
@@ -64,7 +69,7 @@ return {
 				vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 
 				-- Install missing parsers (async, no-op if already installed)
-				-- ts.install({ lang })
+				ts.install({ lang })
 			end,
 		})
 	end,
