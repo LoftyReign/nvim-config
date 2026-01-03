@@ -49,6 +49,7 @@ return {
 			"TelescopeResults",
 			"fidget",
 			"cmp_menu",
+			"netrw",
 		}
 
 		vim.api.nvim_create_autocmd("FileType", {
