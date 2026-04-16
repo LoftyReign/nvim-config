@@ -6,6 +6,9 @@ return {
 				SentenceCapitalization = false,
 				SpellCheck = false,
 			},
+			isolateEnglish = false,
+			dialect = "American",
+			lineLength = 80,
 		},
 	},
 }

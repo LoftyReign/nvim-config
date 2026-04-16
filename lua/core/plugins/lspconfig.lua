@@ -20,7 +20,7 @@ return {
 					vim.keymap.set(mode, keys, func, { buffer = ev.buf, desc = "LSP: " .. desc })
 				end
 
-				map("gn", vim.lsp.buf.rename, "Rename")
+				map("gn", vim.lsp.buf.rename, "Refactor Rename")
 				map("ga", vim.lsp.buf.code_action, "Goto Code Action", { "n", "x" })
 				map("gr", require("telescope.builtin").lsp_references, "Goto References")
 				map("gd", require("telescope.builtin").lsp_definitions, "Goto Definition")
@@ -36,7 +36,7 @@ return {
 				-- Jump to the type of the word under your cursor.
 				--  Useful when you're not sure what type a variable is and you want to see
 				--  the definition of its *type*, not where it was *defined*.
-				map("gt", require("telescope.builtin").lsp_type_definitions, "[G]oto [T]ype Definition")
+				map("gt", require("telescope.builtin").lsp_type_definitions, "Goto Type Definition")
 			end,
 		})
 
@@ -55,5 +55,24 @@ return {
 		for _, server in ipairs(servers) do
 			vim.lsp.enable(server)
 		end
+
+		-- vim.lsp.enable("harper_ls")
+		-- vim.lsp.enable("typos-lsp")
+		--
+		-- vim.api.nvim_create_autocmd("FileType", {
+		-- 	pattern = "typst",
+		-- 	callback = function()
+		-- 		vim.opt_local.spell = true
+		-- 		vim.opt_local.spelllang = "en_us,de_de"
+		-- 		vim.opt_local.textwidth = 80
+		-- 	end,
+		-- })
+		vim.api.nvim_create_autocmd("FileType", {
+			pattern = "typst",
+			callback = function()
+				vim.opt_local.textwidth = 80
+				vim.opt_local.formatoptions:append("t")
+			end,
+		})
 	end,
 }

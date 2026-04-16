@@ -9,7 +9,7 @@ return {
 			},
 		},
 	},
-	lazy = false,
+	lazy = true,
 	branch = "main",
 	build = ":TSUpdate",
 	config = function()
