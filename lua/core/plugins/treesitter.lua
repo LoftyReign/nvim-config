@@ -39,6 +39,7 @@ return {
 			"vim",
 			"vimdoc",
 			"xml",
+			"template",
 		})
 
 		local ignore_filetypes = {
