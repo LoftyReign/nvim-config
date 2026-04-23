@@ -1,5 +1,6 @@
 return {
 	{ import = "lofty.themes" },
+	{ import = "lofty.mini" },
 	{
 		"persist_scheme",
 		dir = vim.fn.stdpath("config") .. "/lua/plugins/persist_scheme",

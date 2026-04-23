@@ -1,5 +1,5 @@
 return {
-	"nvim-mini/mini.nvim",
+	"nvim-mini/mini.comment",
 	version = false,
 	config = function()
 		require("mini.comment").setup()
