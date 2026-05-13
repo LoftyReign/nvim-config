@@ -40,8 +40,23 @@ return {
 			end,
 		})
 
-		local servers = { "lua_ls", "gopls", "bash-language-server", "typos-lsp", "harper-ls", "tinymist" }
-		local ensure_installed = servers
+		local servers = {
+			{ mason = "lua-language-server", lsp = "lua_ls" },
+			{ mason = "gopls" },
+			{ mason = "bash-language-server", lsp = "bashls" },
+			{ mason = "typos-lsp", lsp = "typos_lsp" },
+			{ mason = "harper-ls", lsp = "harper_ls" },
+			{ mason = "tinymist" },
+			{ mason = "zls" },
+		}
+
+		local ensure_installed = {}
+		local lsp_servers = {}
+		for _, s in ipairs(servers) do
+			table.insert(ensure_installed, s.mason)
+			table.insert(lsp_servers, s.lsp or s.mason)
+		end
+
 		vim.list_extend(ensure_installed, {
 			"stylua",
 			"goimports",
@@ -52,27 +67,8 @@ return {
 			ensure_installed = ensure_installed,
 		})
 
-		for _, server in ipairs(servers) do
+		for _, server in ipairs(lsp_servers) do
 			vim.lsp.enable(server)
 		end
-
-		-- vim.lsp.enable("harper_ls")
-		-- vim.lsp.enable("typos-lsp")
-		--
-		-- vim.api.nvim_create_autocmd("FileType", {
-		-- 	pattern = "typst",
-		-- 	callback = function()
-		-- 		vim.opt_local.spell = true
-		-- 		vim.opt_local.spelllang = "en_us,de_de"
-		-- 		vim.opt_local.textwidth = 80
-		-- 	end,
-		-- })
-		vim.api.nvim_create_autocmd("FileType", {
-			pattern = "typst",
-			callback = function()
-				vim.opt_local.textwidth = 80
-				vim.opt_local.formatoptions:append("t")
-			end,
-		})
 	end,
 }

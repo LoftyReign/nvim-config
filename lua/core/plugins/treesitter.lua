@@ -18,6 +18,7 @@ return {
 
 		ts.install({
 			"bash",
+			"zig",
 			"gdscript",
 			"gdshader",
 			"git_config",
