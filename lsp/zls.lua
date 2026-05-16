@@ -13,6 +13,7 @@ return {
 			warn_style = true,
 			enable_snippets = true,
 			enable_build_on_save = true,
+			build_on_save_step = "check",
 		},
 	},
 }

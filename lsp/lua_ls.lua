@@ -8,7 +8,12 @@ return {
 				enable = false,
 			},
 			diagnostics = {
-				globals = { "vim" },
+				globals = { "vim", "hl" },
+			},
+			workspace = {
+				library = {
+					"/usr/share/hypr/stubs",
+				},
 			},
 			runtime = {
 				version = "LuaJIT",
