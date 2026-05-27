@@ -45,9 +45,10 @@ return {
 			{ mason = "gopls" },
 			{ mason = "bash-language-server", lsp = "bashls" },
 			{ mason = "typos-lsp", lsp = "typos_lsp" },
-			{ mason = "harper-ls", lsp = "harper_ls" },
+			-- { mason = "harper-ls", lsp = "harper_ls" },
 			{ mason = "tinymist" },
 			{ mason = "zls" },
+			{ mason = "rust-analyzer", lsp = "rust_analyzer" },
 		}
 
 		local ensure_installed = {}
