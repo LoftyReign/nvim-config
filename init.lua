@@ -5,31 +5,80 @@ vim.o.tabstop = 4
 vim.o.softtabstop = 4
 vim.o.shiftwidth = 4
 vim.o.signcolumn = "yes"
+vim.o.winborder = "rounded"
 vim.g.mapleader = " "
 
--- vim.keymap.set("n", "<leader>pv", vim.cmd.Ex, { desc = "Open netrw" })
 vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format)
+vim.keymap.set('n', '<leader>f', ':Pick files<CR>')
+vim.keymap.set('n', '<leader>h', ':Pick help<CR>')
+vim.keymap.set("n", "<leader>e", ':Oil<CR>')
+
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+
+vim.keymap.set("i", "<C-Space>", "<C-x><C-o>")
 
 vim.pack.add({
-	{src = "https://github.com/vague2k/vague.nvim"},
-	{src = "https://github.com/stevearc/oil.nvim"},
-	{src = "https://github.com/echasnovski/mini.pick"},
-	{src = "https://github.com/neovim/nvim-lspconfig"},
+    { src = "https://github.com/vague2k/vague.nvim" },
+    { src = "https://github.com/stevearc/oil.nvim" },
+    { src = "https://github.com/echasnovski/mini.pick" },
+    { src = "https://github.com/neovim/nvim-lspconfig" },
+    { src = "https://github.com/mason-org/mason.nvim" },
+})
+require "mini.pick".setup()
+require "oil".setup()
+require "mason".setup({
+    ensure_installed = {
+        "lua-language-server",
+        "stylua",
+    },
 })
 
-vim.lsp.enable({"lua_ls"})
+
+vim.api.nvim_create_autocmd('LspAttach', {
+    callback = function(ev)
+        local client = vim.lsp.get_client_by_id(ev.data.client_id)
+        if client:supports_method('textDocument/completion') then
+            vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true})
+        end
+    end,
+})
+vim.cmd("set completeopt+=noselect")
+
+vim.o.completeopt = "menu,menuone,noselect,noinsert,fuzzy"
+vim.o.autocomplete = true
+
+-- vim.api.nvim_create_autocmd("LspAttach", {
+--     callback = function(args)
+--         vim.lsp.completion.enable(true, args.data.client_id, args.buf)
+--     end,
+-- })
+
+vim.lsp.enable({ "lua_ls" })
 
 vim.cmd("colorscheme vague")
 vim.cmd(":hi statusline guibg=NONE")
 
 vim.o.clipboard = "unnamedplus"
--- vim.o.scrolloff = 10
--- vim.o.expandtab = true
--- vim.o.shiftround = true
--- vim.o.cursorline = true
+vim.o.scrolloff = 8
+vim.o.expandtab = true
+vim.o.shiftround = true
+vim.o.laststatus = 3
 -- vim.o.showcmd = true
--- vim.o.laststatus = 2
--- vim.opt.completeopt = { "menu", "menuone", "noselect", "noinsert", "fuzzy" }
+
+
+-- vim.opt.wildmenu = true
+-- vim.opt.wildmode = "longest:full,full"
+
+-- vim.opt.wildmode = "noselect:full"
+-- vim.opt.wildoptions = "pum"
+--
+-- vim.api.nvim_create_autocmd("CmdlineChanged", {
+--   pattern = { ":", "/", "?" },
+--   callback = function()
+--     vim.fn.wildtrigger()
+--   end,
+-- })
 
 -- vim.keymap.set("n", "<C-j>", function()
 -- 	vim.diagnostic.jump({
