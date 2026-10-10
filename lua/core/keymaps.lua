@@ -25,6 +25,6 @@ end, { desc = "Prev diagnostic" })
 vim.keymap.set("n", "<leader>dd", "<cmd>lua vim.diagnostic.open_float()<CR>", { desc = "Toggle local troubleshoot" })
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic Quickfix list" })
 
--- Do not copy deletions into clipboard
-vim.keymap.set({ "n", "v" }, "d", '"_d', { noremap = true })
-vim.keymap.set({ "n", "v" }, "x", '"_x', { noremap = true })
+-- Do not copy c deletions into clipboard
+vim.keymap.set({ "n", "v" }, "c", '"_c', { noremap = true })
+-- vim.keymap.set({ "n", "v" }, "x", '"_x', { noremap = true })
