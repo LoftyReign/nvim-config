@@ -21,7 +21,7 @@ return {
 				end
 
 				map("gn", vim.lsp.buf.rename, "Refactor Rename")
-				map("ga", vim.lsp.buf.code_action, "Goto Code Action", { "n", "x" })
+				map("<leader>i", vim.lsp.buf.code_action, "Goto Code Action", { "n", "x" })
 				map("gr", require("telescope.builtin").lsp_references, "Goto References")
 				map("gd", require("telescope.builtin").lsp_definitions, "Goto Definition")
 				map("gi", require("telescope.builtin").lsp_implementations, "Goto Implementation")
@@ -49,6 +49,8 @@ return {
 			{ mason = "tinymist" },
 			{ mason = "zls" },
 			{ mason = "rust-analyzer", lsp = "rust_analyzer" },
+			{ mason = "clangd" },
+			{ mason = "clang-format" },
 		}
 
 		local ensure_installed = {}

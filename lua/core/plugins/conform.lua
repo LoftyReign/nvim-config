@@ -11,6 +11,7 @@ return {
 				lua = { "stylua" },
 				go = { "goimports", "gofumpt" },
 				zig = { "zigfmt" },
+				c = { "clang-format" },
 			},
 			format_on_save = {
 				lsp_fallback = true,
